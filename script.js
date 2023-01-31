@@ -26,10 +26,6 @@ function newSong() {
 	drums.src = "songs/" + currentSong + "/drums.ogg";
 	sounds.push(drums);
 	
-	var guitar = document.createElement("audio");
-	guitar.src = "songs/" + currentSong + "/guitar.ogg";
-	sounds.push(guitar);
-	
 	var keys = document.createElement("audio");
 	keys.src = "songs/" + currentSong + "/keys.ogg";
 	sounds.push(keys);
@@ -37,6 +33,10 @@ function newSong() {
 	var rhythm = document.createElement("audio");
 	rhythm.src = "songs/" + currentSong + "/rhythm.ogg";
 	sounds.push(rhythm);
+		
+	var guitar = document.createElement("audio");
+	guitar.src = "songs/" + currentSong + "/guitar.ogg";
+	sounds.push(guitar);
 	
 	var vocals = document.createElement("audio");
 	vocals.src = "songs/" + currentSong + "/vocals.ogg";
@@ -59,6 +59,7 @@ function newSong() {
 }
 
 function play() {
+	document.getElementById("game-messages").innerHTML = "";
 	for (let i = 0; i < guessAmount; i++) {
 		sounds[i].currentTime = 60;
 		sounds[i].play();
@@ -66,8 +67,16 @@ function play() {
 	}
 }
 
+function pause() {
+	for (let i = 0; i < guessAmount; i++) {
+		sounds[i].pause();
+		document.getElementById(sounds[i].src.split("/").pop()).classList.remove("playing");
+	}
+}
+
 function skip() {
 	if(guessAmount > 4) {
+		document.getElementById("game-messages").innerHTML = "The song was " + currentSong;
 		newSong();
 		return;
 	}
@@ -85,6 +94,7 @@ function skip() {
 function guess() {
 	if(document.getElementById("song-input").value.trim() == currentSong.trim()) {
 		console.log("success!")
+		document.getElementById("game-messages").innerHTML = "Correct!";
 		newSong();
 	} else {
 		skip();
