@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css" />
+		<title>Audio Player</title>
+	</head>
+	<body>
+		<div id="audios">
+			
+		</div>
+		<br>
+		<div id="guess-amount"></div>
+		<button id="playpause" onclick="play();">Play</button>
+		<button onclick="skip();">Skip</button>
+		<br>
+		<input id="song-input" list="song-list" placeholder="Start typing...">
+		<datalist id="song-list">
+			<option>Russia</option>
+			<option>Germany</option>
+			<option>United Kingdom</option>
+		</datalist>
+		<button onclick="guess();">Guess</button>
+	<script src="script.js"></script>
+  	</body>
+</html>
